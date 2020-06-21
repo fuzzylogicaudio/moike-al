@@ -86,15 +86,14 @@ void draw(){
     for(int x = 0; x < cols; x++){
       //vertex(x*scl, y*scl, terrain[x][y]);
       //vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
-      stroke(255);
+      
+      //This sets the colour of the circle
+      if(circleCheck(x,y)){stroke(255,0,0);}
+      else{stroke(0,0,255);}
+      
       point(x*scl, y*scl, terrain[x][y]);
-      for(int oi = 0; oi < orbPoints; oi++){
-          if(x == orbArray[oi][0] || y == orbArray[oi][1]){
-            stroke(255, 0, 0);
-            point(x*scl, y*scl, terrain[x][y]);
-            //println("match");
-          }
-      }
+
+
       //point(x*scl, (y+1)*scl);
       //rect(x*scl, y*scl, scl, scl);
     }
@@ -127,4 +126,26 @@ void keyPressed(){
       speed = saveSpeed;
     }
   }
+}
+
+
+
+//This is the checker function for the circle
+
+
+
+bool circleCheck(int X, int Y){
+
+  int x_Center= 50;
+  int y_Center=50;
+  int radius=25;
+  int line_thickness=2;
+
+  int scanvalue=(X-x_Center)^2 + (Y-y_Center)^2;
+ 
+ if((scanvalue<radius^2+linethickness) && (scanvalue>radius^2-linethickness))
+ {
+ return true;
+ } 
+ return false;
 }
